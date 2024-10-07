@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://icc-kidsgbigama.nyuuk.my.id/api/method'
