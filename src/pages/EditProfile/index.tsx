@@ -14,10 +14,17 @@ import axios from 'axios'
 import CircleFad from '../../component/atoms/CircleFad'
 import Colors from '../../component/atoms/Colors'
 import DialogButton from 'react-native-dialog/lib/Button'
+import { BASE_URL } from '../../config'
 
 const EditProfile = ({route , navigation} : any) => {
 
-  const {userInfo} = route.params;
+  const {userInfo, refresdata} = route.params;
+  
+
+  // console.log("useinfo", route)
+  // console.log("refresdata", refresdata)
+
+  // const[userInfo, setUserInfo] = useState(route.params);
 
   const[useImage, setImage] = useState('');
   const[usname, setnama] = useState('');
@@ -201,16 +208,24 @@ const EditProfile = ({route , navigation} : any) => {
           birth_date: useTtl,
         };
 
-        axios.post('https://icc-kidsgbigama.nyuuk.my.id/api/method/kidsgbigama_api.api.profile.api.update_profile', userData, config)
+        axios.post(`${BASE_URL}/kidsgbigama_api.api.profile.api.update_profile`, userData, config)
         .then(response => {
           // Handle response
-          // console.log(response.data);
+          // console.log("update",response.data);
           // Alert.alert("Login Successful", "Welcome back!");
           if(response.data.meta.status_code == 200)
           {   
             setLoading(false)
             ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
-            navigation.navigate('Home');
+
+            // setUserInfo(response.data.data)
+
+            let boo = true;
+
+            // navigation.navigate('Home');
+
+            refresdata()
+            navigation.goBack('Home');
           }
           else
           {
@@ -233,7 +248,7 @@ const EditProfile = ({route , navigation} : any) => {
         throw e;
       }
 
-      return;
+      // return;
 
     }
     else
@@ -258,16 +273,18 @@ const EditProfile = ({route , navigation} : any) => {
           birth_date: useTtl,
         };
 
-        axios.post('https://icc-kidsgbigama.nyuuk.my.id/api/method/kidsgbigama_api.api.profile.api.update_profile', userData, config)
+        axios.post(`${BASE_URL}/kidsgbigama_api.api.profile.api.update_profile`, userData, config)
         .then(response => {
           // Handle response
-          // console.log(response.data);
+          // console.log("update",response.data);
           // Alert.alert("Login Successful", "Welcome back!");
           if(response.data.meta.status_code == 200)
           {   
             setLoading(false)
             ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
-            navigation.replace('Home');
+            // navigation.replace('Home');
+            refresdata()
+            navigation.goBack('Home');
           }
           else
           {
@@ -289,7 +306,7 @@ const EditProfile = ({route , navigation} : any) => {
         throw e;
       }
 
-      return;
+      // return;
 
     }
   }
