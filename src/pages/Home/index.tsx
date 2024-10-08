@@ -10,11 +10,14 @@ import axios from 'axios';
 import { CircleFade } from 'react-native-animated-spinkit'
 import CircleFad from '../../component/atoms/CircleFad'
 import Colors from '../../component/atoms/Colors'
+import { BASE_URL } from '../../config'
+import { useRoute } from '@react-navigation/native'
 
 
 const { width, height } = Dimensions.get('window');
 
-const Home = ({navigation} : {navigation:any}) => {
+const Home = ({navigation , route} : any) => {
+
   const [userInfo, SetuserInfo] = useState<any>('');
   const [userName, SetuserName] = useState('');
   const [userPhone_number, SetPhone_number] = useState('');
@@ -24,13 +27,16 @@ const Home = ({navigation} : {navigation:any}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(false);
 
+
   const [index, setIndex] = useState(0);
   const flatListRef = useRef(null);
   const scrollOffset = useRef(0);
 
+
+
   useEffect(() => {
     getdata()
-  }, [])
+  }, [] )
 
   useEffect(() => {
     getslider()
@@ -53,10 +59,10 @@ const Home = ({navigation} : {navigation:any}) => {
         }
       } 
   
-      axios.get('https://icc-kidsgbigama.nyuuk.my.id/api/method/kidsgbigama_api.api.auth.api.profile', config)
+      axios.get(`${BASE_URL}/kidsgbigama_api.api.auth.api.profile`, config)
         .then(response => {
           // Handle response
-          // console.log(response.data);
+          console.log("data", response.data);
           // Alert.alert("Login Successful", "Welcome back!");
           if(response.data.meta.status_code == 200)
           {   
@@ -125,7 +131,7 @@ const Home = ({navigation} : {navigation:any}) => {
         }
       } 
   
-      axios.get('https://icc-kidsgbigama.nyuuk.my.id/api/method/kidsgbigama_api.api.slider.api.list?page=1&per_page=10', config)
+      axios.get(`${BASE_URL}/kidsgbigama_api.api.slider.api.list?page=1&per_page=10`, config)
         .then(response => {
           // Handle response
           // console.log("aa"+ JSON.stringify(response.data.data.items));
@@ -257,7 +263,8 @@ const Home = ({navigation} : {navigation:any}) => {
     <View style={{ justifyContent:'center', alignContent:'flex-end'}}>
 
       <TouchableOpacity onPress={() => navigation.navigate('Edit Profile', {
-        userInfo
+        userInfo,
+        refresdata: getdata
       })}>
       <Image 
       source={icedit} >
