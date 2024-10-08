@@ -9,6 +9,7 @@ import { SliderHeader } from 'react-native-image-slider-banner/src/sliderHeader'
 import axios from 'axios';
 import { CircleFade } from 'react-native-animated-spinkit'
 import CircleFad from '../../component/atoms/CircleFad'
+import Colors from '../../component/atoms/Colors'
 
 
 const { width, height } = Dimensions.get('window');
@@ -247,9 +248,9 @@ const Home = ({navigation} : {navigation:any}) => {
 
     <View style={{flex: 1, marginLeft: 5, marginRight: 5, justifyContent:'center'}}>
 
-    <PoppinsText style={{fontFamily:'Poppins-Bold', color:'#000'}}> {userName}</PoppinsText>
+    <PoppinsText style={styles.styletextbod}> {userName}</PoppinsText>
     <PoppinsText style={{fontFamily:'Poppins-Bold', color:'#000', fontSize:12}}> {userInfo.role}</PoppinsText>
-    <PoppinsText style={{fontFamily:'Poppins-Bold', color:'#000'}}> {userPhone_number}</PoppinsText>
+    <PoppinsText style={styles.styletextbod}> {userPhone_number}</PoppinsText>
 
     </View>
 
@@ -301,43 +302,49 @@ const Home = ({navigation} : {navigation:any}) => {
 
       {loading ? ( <CircleFad/> ) : (<View></View>)}
 
-    <View style = {{ flex:1,flexDirection:'row', position:'absolute', bottom:0}}>
+    <View style = {styles.viewstylebottom}>
 
-      <View style={{ flex:1, alignItems:'center'}}>
+      <View style={styles.viewbottonrow}>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Presensi Murid')}>
+        <TouchableOpacity style={{alignItems:'center'}} onPress={() => navigation.navigate('Presensi Murid')}>
           <Image 
             source={icpresensimurid} >
           </Image>
+
+          <PoppinsText style={{color:Colors.white,  marginTop:5}}>Presensi </PoppinsText>
+          <PoppinsText style={{color:Colors.white}}>Murid</PoppinsText>
         </TouchableOpacity>
 
-        <PoppinsText style={{color:'#fff',  marginTop:5}}>Presensi </PoppinsText>
-        <PoppinsText style={{color:'#fff'}}>Murid</PoppinsText>
+
       </View>
 
-      <View style={{ flex:1, alignItems:'center'}}>
+      <View style={styles.viewbottonrow}>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Masuk')}>
+        <TouchableOpacity style={{alignItems:'center'}} onPress={() => navigation.navigate('Masuk')}>
           <Image 
             source={icpresensiguru} >
           </Image>
+
+          <PoppinsText style={{color:Colors.white, marginTop:5}}>Presensi </PoppinsText>
+          <PoppinsText style={{color:Colors.white}}>Guru</PoppinsText>
         </TouchableOpacity >
 
-        <PoppinsText style={{color:'#fff', marginTop:5}}>Presensi </PoppinsText>
-        <PoppinsText style={{color:'#fff'}}>Guru</PoppinsText>
+
 
       </View>
 
-      <View style={{ flex:1, alignItems:'center'}}>
+      <View style={styles.viewbottonrow}>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Log Presensi')}>
+        <TouchableOpacity style={{alignItems:'center'}} onPress={() => navigation.navigate('Log Presensi')}>
           <Image 
             source={icpresensilog} >
           </Image>
+
+          <PoppinsText style={{color:Colors.white, marginTop:5}}>LOG </PoppinsText>
+          <PoppinsText style={{color:Colors.white}}>Presensi</PoppinsText>
         </TouchableOpacity>
 
-        <PoppinsText style={{color:'#fff', marginTop:5}}>LOG </PoppinsText>
-        <PoppinsText style={{color:'#fff'}}>Presensi</PoppinsText>
+
       </View>
 
 
@@ -371,4 +378,18 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
   },
+  styletextbod:{
+    fontFamily:'Poppins-Bold', 
+    color:'#000'
+  }, 
+  viewstylebottom:{
+    flex:1,
+    flexDirection:'row',
+     position:'absolute', 
+     bottom:0
+  }, 
+  viewbottonrow:{
+    flex:1, 
+    alignItems:'center'
+  }
 })
