@@ -200,7 +200,7 @@ const Home = ({navigation} : {navigation:any}) => {
 
     <SafeAreaView style={{flex:1,margin:16}}>
 
-    {userInfo.role === 'Teacher' ? 
+    {userInfo.role === 'Coordinator' ? 
       (    
       <View style={{justifyContent:'flex-end', alignItems:'flex-end'}}>
         <TouchableOpacity disabled={false}
