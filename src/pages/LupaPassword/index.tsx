@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { PoppinsText } from '../../asset/font'
 import axios from 'axios';
 import CircleFad from '../../component/atoms/CircleFad';
+import { BASE_URL } from '../../config';
 
 const LupaPassword = ({navigation} : any) => {
     const[ustelepon, setelepon] = useState('');
@@ -21,7 +22,7 @@ const LupaPassword = ({navigation} : any) => {
             phone_number: ustelepon,
           };
       
-          axios.post('https://icc-kidsgbigama.nyuuk.my.id/api/method/kidsgbigama_api.api.auth.api.request_otp', userData)
+          axios.post(`${BASE_URL}/kidsgbigama_api.api.auth.api.request_otp`, userData)
             .then(response => {
               // Handle response
               // console.log(response.data);

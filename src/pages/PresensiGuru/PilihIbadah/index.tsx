@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PoppinsText } from '../../../asset/font';
 import { icradioincheck, icradiouncheck } from '../../../asset/images';
 import CircleFad from '../../../component/atoms/CircleFad';
+import { BASE_URL } from '../../../config';
 
 
 
@@ -33,7 +34,7 @@ const PilihIbadah = ({route , navigation, } : any) => {
           }
         } 
     
-        axios.get('https://icc-kidsgbigama.nyuuk.my.id/api/method/kidsgbigama_api.api.event.api.list?page=1&per_page=5', config)
+        axios.get(`${BASE_URL}/kidsgbigama_api.api.event.api.list?page=1&per_page=5`, config)
           .then(response => {
             // Handle response
             // console.log(response.data);

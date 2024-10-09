@@ -7,6 +7,7 @@ import { icflashwhite, icrightwhite } from '../../../asset/images';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import CircleFad from '../../../component/atoms/CircleFad';
+import { BASE_URL } from '../../../config';
 
 const Scan = ({route , navigation, } : any) => {
     const {useId} = route.params;
@@ -60,7 +61,7 @@ const Scan = ({route , navigation, } : any) => {
             };
     
     
-            axios.post('https://icc-kidsgbigama.nyuuk.my.id/api/method/kidsgbigama_api.api.attendance.api.present_student', params, config)
+            axios.post(`${BASE_URL}/kidsgbigama_api.api.attendance.api.present_student`, params, config)
             .then(response => {
               // Handle response
               console.log(response.data);

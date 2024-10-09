@@ -12,6 +12,7 @@ import { CircleFade, Plane } from 'react-native-animated-spinkit'
 import { Circle } from 'react-native-maps'
 import CircleFad from '../../component/atoms/CircleFad'
 import Colors from '../../component/atoms/Colors'
+import { BASE_URL } from '../../config'
 
 const LogPresensi = ({navigation} : {navigation:any}) => {
     const date = new Date()
@@ -45,7 +46,7 @@ const LogPresensi = ({navigation} : {navigation:any}) => {
             }
           } 
 
-          axios.get(`https://icc-kidsgbigama.nyuuk.my.id/api/method/kidsgbigama_api.api.attendance.api.log_attendance?start_date=${usestart}&end_date=${useend}`, config)
+          axios.get(`${BASE_URL}/kidsgbigama_api.api.attendance.api.log_attendance?start_date=${usestart}&end_date=${useend}`, config)
             .then(response => {
               // Handle response
               // console.log(response.data);
