@@ -1,4 +1,4 @@
-import {  FlatList, Image, ImageBackground, StyleSheet, Text, View , Dimensions, TouchableOpacity, ToastAndroid} from 'react-native'
+import {  FlatList, Image, ImageBackground, StyleSheet, Text, View , Dimensions, TouchableOpacity, ToastAndroid, Alert, BackHandler} from 'react-native'
 import React, { useEffect , useRef, useState} from 'react'
 import { icbackground, iclogout, icsemi, icedit, icpresensimurid, icpresensiguru, icpresensilog, icaddkelas, icseminew } from '../../asset/images'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -12,6 +12,7 @@ import CircleFad from '../../component/atoms/CircleFad'
 import Colors from '../../component/atoms/Colors'
 import { BASE_URL } from '../../config'
 import { useRoute } from '@react-navigation/native'
+import Dialog from "react-native-dialog";
 
 
 const { width, height } = Dimensions.get('window');
@@ -26,7 +27,6 @@ const Home = ({navigation , route} : any) => {
   const [token, Settoken] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(false);
-
 
   const [index, setIndex] = useState(0);
   const flatListRef = useRef(null);
@@ -62,7 +62,7 @@ const Home = ({navigation , route} : any) => {
       axios.get(`${BASE_URL}/kidsgbigama_api.api.auth.api.profile`, config)
         .then(response => {
           // Handle response
-          console.log("data", response.data);
+          // console.log("data", response.data);
           // Alert.alert("Login Successful", "Welcome back!");
           if(response.data.meta.status_code == 200)
           {   
@@ -114,8 +114,6 @@ const Home = ({navigation , route} : any) => {
     }
     
   }
-
-
 
   const getslider = async () => {
 
@@ -182,7 +180,6 @@ const Home = ({navigation , route} : any) => {
   }, [useSlider]);
 
 
-
   const renderItema = ({item} : any ) => {
     return(
       <View style={{flex:1, elevation:6, width:'100%'}}>
@@ -191,6 +188,36 @@ const Home = ({navigation , route} : any) => {
     )
   }
 
+  // useEffect(() => {
+  //   const backAction = () => {
+  //     Alert.alert(
+  //       'Hold on!', 
+  //       'Are you sure you want to go back?',
+  //     [
+  //         {
+  //           text: 'Cancel',
+  //           onPress: () => null,
+  //           style: 'cancel',
+  //         },
+  //         {
+  //           text: 'YES', onPress: () => BackHandler.exitApp()
+  //         },
+  
+  //     ], 
+
+  //   );
+  //     return true;
+  //   };
+
+  //   const backHandler = BackHandler.addEventListener(
+  //     'hardwareBackPress',
+  //     backAction,
+  //   );
+
+ 
+
+  //   return () => backHandler.remove();
+  // }, []);
 
 
 

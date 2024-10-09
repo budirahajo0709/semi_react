@@ -220,9 +220,6 @@ const EditProfile = ({route , navigation} : any) => {
 
             // setUserInfo(response.data.data)
 
-            let boo = true;
-
-            // navigation.navigate('Home');
 
             refresdata()
             navigation.goBack('Home');

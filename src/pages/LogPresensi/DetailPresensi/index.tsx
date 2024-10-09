@@ -5,6 +5,7 @@ import axios from 'axios';
 import { iclocation } from '../../../asset/images';
 import CircleFad from '../../../component/atoms/CircleFad';
 import Colors from '../../../component/atoms/Colors';
+import { BASE_URL } from '../../../config';
 
 const DetailLokasi = ({route , navigation } : any) => {
   const {id_log} = route.params;
@@ -33,7 +34,7 @@ const DetailLokasi = ({route , navigation } : any) => {
 
       setLoading(true)
 
-      axios.get('https://icc-kidsgbigama.nyuuk.my.id/api/method/kidsgbigama_api.api.attendance.api.detail?id='+ id_log, config)
+      axios.get(`${BASE_URL}/kidsgbigama_api.api.attendance.api.detail?id=`+ id_log, config)
         .then(response => {
           // Handle response
           // console.log(response.data);

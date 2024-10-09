@@ -9,6 +9,7 @@ import { PopUp } from '../../component/atoms/PopUp';
 import { SwipeUp } from '../../component/atoms/SwipeUp';
 import CircleFad from '../../component/atoms/CircleFad';
 import Colors from '../../component/atoms/Colors';
+import { BASE_URL } from '../../config';
 
 const PresensiMurid = ({navigation} : {navigation:any}) => {
     const [checked, setChecked] = useState(0);
@@ -43,7 +44,7 @@ const PresensiMurid = ({navigation} : {navigation:any}) => {
             }
           } 
       
-          axios.get('https://icc-kidsgbigama.nyuuk.my.id/api/method/kidsgbigama_api.api.event.api.list?page=1&per_page=5', config)
+          axios.get(`${BASE_URL}/kidsgbigama_api.api.event.api.list?page=1&per_page=5`, config)
             .then(response => {
               // Handle response
               // console.log(response.data);

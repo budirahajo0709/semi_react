@@ -7,6 +7,7 @@ import { PoppinsText } from '../../../asset/font';
 import { ic_profile, iccamera } from '../../../asset/images';
 import { Circle } from 'react-native-maps';
 import CircleFad from '../../../component/atoms/CircleFad';
+import { BASE_URL } from '../../../config';
 
 const AmbilFoto = ({route , navigation } : any) => {
     const {event} = route.params;
@@ -38,7 +39,7 @@ const AmbilFoto = ({route , navigation } : any) => {
                 type: 'masuk',
             };  
     
-            axios.post('https://icc-kidsgbigama.nyuuk.my.id/api/method/kidsgbigama_api.api.attendance.api.present_instructor', params, config)
+            axios.post(`${BASE_URL}/kidsgbigama_api.api.attendance.api.present_instructor`, params, config)
             .then(response => {
               // Handle response
               // console.log(response.data);
