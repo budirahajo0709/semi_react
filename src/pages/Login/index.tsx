@@ -6,7 +6,6 @@ import TextInputLogin from '../../component/TextInputLogin'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import CircleFad from '../../component/atoms/CircleFad'
-import { BASE_URL } from '../../config'
 import {BASE_URL_STAG} from '@env';
 
 const Login = ({navigation} : {navigation:any}) => {

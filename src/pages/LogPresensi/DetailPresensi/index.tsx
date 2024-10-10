@@ -5,7 +5,6 @@ import axios from 'axios';
 import { iclocation } from '../../../asset/images';
 import CircleFad from '../../../component/atoms/CircleFad';
 import Colors from '../../../component/atoms/Colors';
-import { BASE_URL } from '../../../config';
 import {BASE_URL_STAG} from '@env';
 
 const DetailLokasi = ({route , navigation } : any) => {
