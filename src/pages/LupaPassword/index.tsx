@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { PoppinsText } from '../../asset/font'
 import axios from 'axios';
 import CircleFad from '../../component/atoms/CircleFad';
-import { BASE_URL } from '../../config';
 import {BASE_URL_STAG} from '@env';
 
 const LupaPassword = ({navigation} : any) => {

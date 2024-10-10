@@ -14,7 +14,7 @@ import axios from 'axios'
 import CircleFad from '../../component/atoms/CircleFad'
 import Colors from '../../component/atoms/Colors'
 import DialogButton from 'react-native-dialog/lib/Button'
-import { BASE_URL } from '../../config'
+
 import {BASE_URL_STAG} from '@env';
 
 const EditProfile = ({route , navigation} : any) => {

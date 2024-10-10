@@ -12,7 +12,6 @@ import { CircleFade, Plane } from 'react-native-animated-spinkit'
 import { Circle } from 'react-native-maps'
 import CircleFad from '../../component/atoms/CircleFad'
 import Colors from '../../component/atoms/Colors'
-import { BASE_URL } from '../../config'
 import {BASE_URL_STAG} from '@env';
 
 const LogPresensi = ({navigation} : {navigation:any}) => {
