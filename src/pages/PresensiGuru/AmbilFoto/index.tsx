@@ -8,6 +8,7 @@ import { ic_profile, iccamera } from '../../../asset/images';
 import { Circle } from 'react-native-maps';
 import CircleFad from '../../../component/atoms/CircleFad';
 import { BASE_URL } from '../../../config';
+import {BASE_URL_STAG} from '@env';
 
 const AmbilFoto = ({route , navigation } : any) => {
     const {event} = route.params;
@@ -39,7 +40,7 @@ const AmbilFoto = ({route , navigation } : any) => {
                 type: 'masuk',
             };  
     
-            axios.post(`${BASE_URL}/kidsgbigama_api.api.attendance.api.present_instructor`, params, config)
+            axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.attendance.api.present_instructor`, params, config)
             .then(response => {
               // Handle response
               // console.log(response.data);

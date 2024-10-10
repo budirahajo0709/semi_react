@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import CircleFad from '../../../component/atoms/CircleFad';
 import { BASE_URL } from '../../../config';
+import {BASE_URL_STAG} from '@env';
 
 const Scan = ({route , navigation, } : any) => {
     const {useId} = route.params;
@@ -61,7 +62,7 @@ const Scan = ({route , navigation, } : any) => {
             };
     
     
-            axios.post(`${BASE_URL}/kidsgbigama_api.api.attendance.api.present_student`, params, config)
+            axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.attendance.api.present_student`, params, config)
             .then(response => {
               // Handle response
               console.log(response.data);

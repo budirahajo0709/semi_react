@@ -26,6 +26,7 @@
     "react-native-countdown-component": "^2.7.1",
     "react-native-date-picker": "^5.0.7",
     "react-native-dialog": "^9.3.0",
+    "react-native-dotenv": "^3.4.11",
     "react-native-flatlist-slider": "^1.0.6",
     "react-native-image-picker": "^7.1.2",
     "react-native-image-slider-banner": "^1.0.3",
