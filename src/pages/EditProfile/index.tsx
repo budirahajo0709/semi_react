@@ -15,6 +15,7 @@ import CircleFad from '../../component/atoms/CircleFad'
 import Colors from '../../component/atoms/Colors'
 import DialogButton from 'react-native-dialog/lib/Button'
 import { BASE_URL } from '../../config'
+import {BASE_URL_STAG} from '@env';
 
 const EditProfile = ({route , navigation} : any) => {
 
@@ -208,7 +209,7 @@ const EditProfile = ({route , navigation} : any) => {
           birth_date: useTtl,
         };
 
-        axios.post(`${BASE_URL}/kidsgbigama_api.api.profile.api.update_profile`, userData, config)
+        axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.profile.api.update_profile`, userData, config)
         .then(response => {
           // Handle response
           // console.log("update",response.data);
@@ -270,7 +271,7 @@ const EditProfile = ({route , navigation} : any) => {
           birth_date: useTtl,
         };
 
-        axios.post(`${BASE_URL}/kidsgbigama_api.api.profile.api.update_profile`, userData, config)
+        axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.profile.api.update_profile`, userData, config)
         .then(response => {
           // Handle response
           // console.log("update",response.data);

@@ -11,6 +11,7 @@ import { getDefaultConfig } from '@react-native/metro-config';
 import { getDistance } from 'geolib';
 import CircleFad from '../../component/atoms/CircleFad';
 import { BASE_URL } from '../../config';
+import {BASE_URL_STAG} from '@env';
 
 
 
@@ -50,7 +51,7 @@ const PresensiGuru = ( {navigation} : {navigation:any}) => {
         }
       } 
 
-      axios.get(`${BASE_URL}/kidsgbigama_api.api.attendance.api.valid_location`, config)
+      axios.get(`${BASE_URL_STAG}/kidsgbigama_api.api.attendance.api.valid_location`, config)
 
         .then(response => {
           // Handle response

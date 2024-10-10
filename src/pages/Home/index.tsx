@@ -10,9 +10,10 @@ import axios from 'axios';
 import { CircleFade } from 'react-native-animated-spinkit'
 import CircleFad from '../../component/atoms/CircleFad'
 import Colors from '../../component/atoms/Colors'
-import { BASE_URL } from '../../config'
 import { useRoute } from '@react-navigation/native'
 import Dialog from "react-native-dialog";
+import {BASE_URL_STAG} from '@env';
+
 
 
 const { width, height } = Dimensions.get('window');
@@ -31,7 +32,6 @@ const Home = ({navigation , route} : any) => {
   const [index, setIndex] = useState(0);
   const flatListRef = useRef(null);
   const scrollOffset = useRef(0);
-
 
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const Home = ({navigation , route} : any) => {
         }
       } 
   
-      axios.get(`${BASE_URL}/kidsgbigama_api.api.auth.api.profile`, config)
+      axios.get(`${BASE_URL_STAG}/kidsgbigama_api.api.auth.api.profile`, config)
         .then(response => {
           // Handle response
           // console.log("data", response.data);
@@ -128,8 +128,9 @@ const Home = ({navigation , route} : any) => {
            "Authorization" : `Basic ${AccesToken}`
         }
       } 
-  
-      axios.get(`${BASE_URL}/kidsgbigama_api.api.slider.api.list?page=1&per_page=10`, config)
+
+
+      axios.get(`${BASE_URL_STAG}/kidsgbigama_api.api.slider.api.list?page=1&per_page=10`, config)
         .then(response => {
           // Handle response
           // console.log("aa"+ JSON.stringify(response.data.data.items));
@@ -220,7 +221,6 @@ const Home = ({navigation , route} : any) => {
   // }, []);
 
 
-
   return (
     <SafeAreaView style={{flex:1, backgroundColor:'#fff'}}>
 
@@ -265,7 +265,7 @@ const Home = ({navigation , route} : any) => {
     <View style={{ alignItems:'center', marginTop:20, }}>
 
       <View style={{borderRadius:10, elevation:6,}}>
-        <Image 
+      <Image 
         source={icseminew} style={{width:96, height:96,}} >
       </Image>
       </View>
@@ -275,15 +275,18 @@ const Home = ({navigation , route} : any) => {
 
     <View style={{elevation:6, marginTop: 50, padding:10, backgroundColor:'#fadde4', flexDirection:'row', borderRadius:10, marginBottom:35}}>
 
+    
     <Image 
       source={{uri: userInfo.user_image}} style={{ width:60, height:60, marginRight:5, borderRadius:10}} >
     </Image>
 
+
+
     <View style={{flex: 1, marginLeft: 5, marginRight: 5, justifyContent:'center'}}>
 
-    <PoppinsText style={styles.styletextbod}> {userName}</PoppinsText>
-    <PoppinsText style={{fontFamily:'Poppins-Bold', color:'#000', fontSize:12}}> {userInfo.role}</PoppinsText>
-    <PoppinsText style={styles.styletextbod}> {userPhone_number}</PoppinsText>
+    <Text style={styles.styletextbod}> {userName}</Text>
+    <Text style={{fontFamily:'Poppins-Bold', color:'#000', fontSize:12}}> {userInfo.role}</Text>
+    <Text style={styles.styletextbod}> {userPhone_number}</Text>
 
     </View>
 
@@ -345,8 +348,8 @@ const Home = ({navigation , route} : any) => {
             source={icpresensimurid} >
           </Image>
 
-          <PoppinsText style={{color:Colors.white,  marginTop:5}}>Presensi </PoppinsText>
-          <PoppinsText style={{color:Colors.white}}>Murid</PoppinsText>
+          <Text style={{color:Colors.white,  marginTop:5}}>Presensi </Text>
+          <Text style={{color:Colors.white}}>Murid</Text>
         </TouchableOpacity>
 
 
@@ -359,8 +362,8 @@ const Home = ({navigation , route} : any) => {
             source={icpresensiguru} >
           </Image>
 
-          <PoppinsText style={{color:Colors.white, marginTop:5}}>Presensi </PoppinsText>
-          <PoppinsText style={{color:Colors.white}}>Guru</PoppinsText>
+          <Text style={{color:Colors.white, marginTop:5}}>Presensi </Text>
+          <Text style={{color:Colors.white}}>Guru</Text>
         </TouchableOpacity >
 
 
@@ -374,8 +377,8 @@ const Home = ({navigation , route} : any) => {
             source={icpresensilog} >
           </Image>
 
-          <PoppinsText style={{color:Colors.white, marginTop:5}}>LOG </PoppinsText>
-          <PoppinsText style={{color:Colors.white}}>Presensi</PoppinsText>
+          <Text style={{color:Colors.white, marginTop:5}}>LOG </Text>
+          <Text style={{color:Colors.white}}>Presensi</Text>
         </TouchableOpacity>
 
 

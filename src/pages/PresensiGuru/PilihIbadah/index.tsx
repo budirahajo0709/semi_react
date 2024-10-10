@@ -6,7 +6,7 @@ import { PoppinsText } from '../../../asset/font';
 import { icradioincheck, icradiouncheck } from '../../../asset/images';
 import CircleFad from '../../../component/atoms/CircleFad';
 import { BASE_URL } from '../../../config';
-
+import {BASE_URL_STAG} from '@env';
 
 
 const PilihIbadah = ({route , navigation, } : any) => {
@@ -34,7 +34,7 @@ const PilihIbadah = ({route , navigation, } : any) => {
           }
         } 
     
-        axios.get(`${BASE_URL}/kidsgbigama_api.api.event.api.list?page=1&per_page=5`, config)
+        axios.get(`${BASE_URL_STAG}/kidsgbigama_api.api.event.api.list?page=1&per_page=5`, config)
           .then(response => {
             // Handle response
             // console.log(response.data);

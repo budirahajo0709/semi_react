@@ -7,6 +7,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import CircleFad from '../../component/atoms/CircleFad'
 import { BASE_URL } from '../../config'
+import {BASE_URL_STAG} from '@env';
 
 const Login = ({navigation} : {navigation:any}) => {
   const [phone_number, setPhone_number] = useState('');
@@ -31,7 +32,7 @@ const Login = ({navigation} : {navigation:any}) => {
       password: password,
     };
 
-    axios.post(`${BASE_URL}/kidsgbigama_api.api.auth.api.login`, userData)
+    axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.auth.api.login`, userData)
       .then(response => {
  
         if(response.data.meta.status_code == 200)

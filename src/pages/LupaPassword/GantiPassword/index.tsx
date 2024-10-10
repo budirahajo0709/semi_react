@@ -7,6 +7,7 @@ import TextInputLogin from '../../../component/TextInputLogin';
 import axios from 'axios';
 import CircleFad from '../../../component/atoms/CircleFad';
 import { BASE_URL } from '../../../config';
+import {BASE_URL_STAG} from '@env';
 
 const GantiPassword = ({route , navigation } : any) => {
   const {phone_number} = route.params;
@@ -51,7 +52,7 @@ const GantiPassword = ({route , navigation } : any) => {
      
     };
 
-    axios.post(`${BASE_URL}/kidsgbigama_api.api.auth.api.request_otp`, userData)
+    axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.auth.api.request_otp`, userData)
       .then(response => {
         // Handle response
         console.log(response.data);
@@ -105,7 +106,7 @@ const GantiPassword = ({route , navigation } : any) => {
      
     };
 
-    axios.post(`${BASE_URL}/kidsgbigama_api.api.auth.api.reset_password`, userData)
+    axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.auth.api.reset_password`, userData)
       .then(response => {
         // Handle response
         console.log(response.data);

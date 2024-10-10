@@ -12,7 +12,7 @@ import axios from 'axios'
 import { SwipeUp } from '../../component/atoms/SwipeUp'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 import CircleFad from '../../component/atoms/CircleFad'
-import { BASE_URL } from '../../config'
+import {BASE_URL_STAG} from '@env';
 
 
 const TambahAnak = ({navigation} : any) => {
@@ -61,7 +61,7 @@ const TambahAnak = ({navigation} : any) => {
           } 
     
       
-            axios.get(`${BASE_URL}/kidsgbigama_api.api.formal_education.api.list`, config)
+            axios.get(`${BASE_URL_STAG}/kidsgbigama_api.api.formal_education.api.list`, config)
             .then(response => {
               // Handle response
             //   console.log(response.data);
@@ -221,7 +221,7 @@ const TambahAnak = ({navigation} : any) => {
     
             
     
-            axios.post(`${BASE_URL}/kidsgbigama_api.api.students.api.add_kids`, userData, config)
+            axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.students.api.add_kids`, userData, config)
             .then(response => {
               // Handle response
             //   console.log(response.data);
