@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native'
 import React, { Component } from 'react'
-import { Circle, CircleFade } from 'react-native-animated-spinkit';
+import { Chase, Circle, CircleFade, Swing } from 'react-native-animated-spinkit';
 
 const CircleFad = () => {
 
