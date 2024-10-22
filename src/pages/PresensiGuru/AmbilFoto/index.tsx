@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, StyleSheet, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Image, PermissionsAndroid, SafeAreaView, StyleSheet, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { launchCamera } from 'react-native-image-picker';
 import axios from 'axios';
@@ -19,6 +19,33 @@ const AmbilFoto = ({route , navigation } : any) => {
     const [value, setValue] = useState('Open Camera');
 
     const [loading, setLoading] = useState(false);
+
+    useEffect (() => {
+      requestCameraPermission()
+    }, [])
+
+
+    const requestCameraPermission = async () => {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          {
+            title: "App Camera Permission",
+            message:"App needs access to your camera ",
+            buttonNeutral: "Ask Me Later",
+            buttonNegative: "Cancel",
+            buttonPositive: "OK"
+          }
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log("Camera permission given");
+        } else {
+          console.log("Camera permission denied");
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    };
 
    const handlepost = async() => {
         try{

@@ -1,4 +1,4 @@
-import { Alert, Button, Image, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Alert, Button, Image, PermissionsAndroid, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { iccalender, iccamera, icedit, iclogout, icpresensilog } from '../../asset/images'
@@ -75,6 +75,30 @@ const EditProfile = ({route , navigation} : any) => {
       },
     });
   }, [navigation]);
+
+
+  const requestCameraPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: "App Camera Permission",
+          message:"App needs access to your camera ",
+          buttonNeutral: "Ask Me Later",
+          buttonNegative: "Cancel",
+          buttonPositive: "OK"
+        }
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log("Camera permission given");
+        setIsShowSettingFav(true)
+      } else {
+        console.log("Camera permission denied");
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
   
 
   const renderFileData = () => {
@@ -323,7 +347,8 @@ const EditProfile = ({route , navigation} : any) => {
         </Image>
 
         <TouchableOpacity style={styles.replaceimagestyle} 
-          onPress={() => setIsShowSettingFav(true)}>
+          // onPress={() => setIsShowSettingFav(true)}>
+          onPress={() => requestCameraPermission()}>
 
         <Image source={iccamera} />
         <Text style={{color:Colors.redapp}}> Ganti Foto</Text>
