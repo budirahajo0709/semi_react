@@ -28,11 +28,21 @@ const Router = () => {
   return (
 
     <Stack.Navigator initialRouteName='Splash'>
-        <Stack.Screen name="Splash" component={Splash} options={{headerShown:false}} />
-        <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
-        <Stack.Screen name="Home" component={Home} options={{headerShown:false}} />
+        <Stack.Screen name="Splash" component={Splash} options={{
+          headerShown:false,
+          orientation:'portrait'
+          }} />
+        <Stack.Screen name="Login" component={Login} options={{
+          headerShown:false,
+          orientation:'portrait'
+          }} />
+        <Stack.Screen name="Home" component={Home} options={{
+          headerShown:false, 
+          orientation:'portrait'
+          }} />
         <Stack.Screen name="Edit Profile" component={EditProfile} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -40,6 +50,7 @@ const Router = () => {
           }} />
           <Stack.Screen name="Log Presensi" component={LogPresensi} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -47,6 +58,7 @@ const Router = () => {
           }} />    
           <Stack.Screen name="Presensi Murid" component={PresensiMurid} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -54,8 +66,8 @@ const Router = () => {
           }} />  
           <Stack.Screen name="Scan QR Code Murid" component={Scan} 
           options={{
-       
-          headerShown:true, 
+          headerShown:true,
+          orientation:'portrait', 
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#ffffff'
@@ -64,6 +76,7 @@ const Router = () => {
           }} />  
           <Stack.Screen name="Pilih Murid" component={PilihMurid} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -72,6 +85,7 @@ const Router = () => {
 
         <Stack.Screen name="Masuk" component={PresensiGuru} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -80,6 +94,7 @@ const Router = () => {
 
         <Stack.Screen name="Pilih Ibadah" component={PilihIbadah} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -87,6 +102,7 @@ const Router = () => {
           }} />  
         <Stack.Screen name="Ambil Foto" component={AmbilFoto} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -94,6 +110,7 @@ const Router = () => {
           }} />  
           <Stack.Screen name="Masuk " component={DetailLogPresensi} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -102,6 +119,7 @@ const Router = () => {
 
           <Stack.Screen name="Detail" component={DetailLokasi} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -110,6 +128,7 @@ const Router = () => {
 
           <Stack.Screen name="Lokasi" component={Lokasi} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -117,6 +136,7 @@ const Router = () => {
           }} /> 
           <Stack.Screen name="Lupa Password" component={LupaPassword} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -124,6 +144,7 @@ const Router = () => {
           }} /> 
           <Stack.Screen name="Ganti Password" component={GantiPassword} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
@@ -131,6 +152,7 @@ const Router = () => {
           }} /> 
           <Stack.Screen name="Tambah Murid" component={TambahAnak} options={{
           headerShown:true, 
+          orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{
             backgroundColor: '#df1e4d'
