@@ -31,6 +31,8 @@ const PresensiGuru = ( {navigation} : {navigation:any}) => {
     Geolocation.getCurrentPosition(
       (pos) => {
       setInitialRegion(pos.coords);
+
+      console.log("Data Lokasi Saya", pos.coords)
     })
   }, []);
 
