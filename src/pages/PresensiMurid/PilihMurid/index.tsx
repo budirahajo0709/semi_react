@@ -9,6 +9,7 @@ import CircleFad from '../../../component/atoms/CircleFad';
 import Colors from '../../../component/atoms/Colors';
 import { BASE_URL } from '../../../config';
 import {BASE_URL_STAG} from '@env';
+import moment from 'moment';
 
 
 
@@ -19,6 +20,7 @@ interface nama_title {
 
  export default function PilihMurid ({route , navigation, } : any) {
   const {useId} = route.params;
+  const {TanggalAbsen} = route.params;
 
   const [useee, setUseee] = useState<nama_title>({'id': ''});
   const [data, setData] = useState<any>('');
@@ -33,7 +35,24 @@ interface nama_title {
 
   const [loading, setLoading] = useState(false);
 
-  console.log("PilihMurid : " + useId)
+  // console.log("PilihMurid : " + useId)
+  // console.log("Tanggal  : " + TanggalAbsen)
+
+  if(TanggalAbsen === '')
+  {
+
+  }
+  else
+  {
+    var date = TanggalAbsen.split(' ')[0];
+    var time = TanggalAbsen.split(' ')[1].split('.')[0];
+
+    // console.log("date  : " + date)
+    // console.log("time  : " + time)
+  }
+
+
+  
 
   // console.log("Data"+ JSON.stringify(data))
   // console.log("Data"+ JSON.stringify(useee))
@@ -158,12 +177,29 @@ interface nama_title {
 
       setLoading(true)
 
-      const params = {
-        student: item_id,
-        event: useId,
-      };
+      let params 
 
-      console.log("log params" + JSON.stringify(params))
+      if(TanggalAbsen === '')
+        {
+           params = {
+            student: item_id,
+            event: useId,
+          }
+        }
+        else
+        {
+           params = {
+            student: item_id,
+            event: useId,
+            date : date,
+            time : time
+          };
+   
+        }
+
+
+
+      // console.log("log params" + JSON.stringify(params))
 
       axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.attendance.api.present_student`, params, config)
       .then(response => {

@@ -10,7 +10,7 @@ import axios from 'axios';
 import { CircleFade } from 'react-native-animated-spinkit'
 import CircleFad from '../../component/atoms/CircleFad'
 import Colors from '../../component/atoms/Colors'
-import { useRoute } from '@react-navigation/native'
+import { useFocusEffect, useRoute } from '@react-navigation/native'
 import Dialog from "react-native-dialog";
 import {BASE_URL_STAG} from '@env';
 
@@ -189,35 +189,49 @@ const Home = ({navigation , route} : any) => {
     )
   }
 
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        if (route.name === 'Home') {
+          Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+          {
+            text: 'Cancel',
+            onPress: () => null,
+            style: 'cancel',
+          },
+          {text: 'YES', onPress: () => BackHandler.exitApp()},
+        ]);
+          return true;
+        } else {
+          return false;
+        }
+      };
+
+      const subscription = BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      return () => subscription.remove();
+    }, [])
+  );
+
+
+  // const backAction = () => {
+  //   Alert.alert('AppName', 'Are you sure you want to exit?', [
+  //     {
+  //       text: 'NO',
+  //       onPress: () => null,
+  //       style: 'cancel',
+  //     },
+  //     {text: 'YES', onPress: () => BackHandler.exitApp()},
+  //   ]);
+  //   return true;
+  // };
+
+
   // useEffect(() => {
-  //   const backAction = () => {
-  //     Alert.alert(
-  //       'Hold on!', 
-  //       'Are you sure you want to go back?',
-  //     [
-  //         {
-  //           text: 'Cancel',
-  //           onPress: () => null,
-  //           style: 'cancel',
-  //         },
-  //         {
-  //           text: 'YES', onPress: () => BackHandler.exitApp()
-  //         },
-  
-  //     ], 
-
-  //   );
-  //     return true;
+  //   BackHandler.addEventListener('hardwareBackPress', backAction);
+  //   return () => {
+  //     BackHandler.removeEventListener('hardwareBackPress', backAction);
   //   };
-
-  //   const backHandler = BackHandler.addEventListener(
-  //     'hardwareBackPress',
-  //     backAction,
-  //   );
-
- 
-
-  //   return () => backHandler.remove();
   // }, []);
 
 

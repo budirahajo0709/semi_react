@@ -17,3 +17,5 @@ export const ic_profile = require('./ic_profile.png');
 export const iclocation = require('./ic_location.png');
 export const icaddkelas = require('./ic_addkelas.png');
 export const icseminew = require('./ic_semi_new.png');
+export const icshoweye = require('./show_eye.png');
+export const ichiddeneye = require('./hidden_eye.png');

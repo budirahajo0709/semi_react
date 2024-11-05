@@ -12,11 +12,25 @@ import {BASE_URL_STAG} from '@env';
 
 const Scan = ({route , navigation, } : any) => {
     const {useId} = route.params;
-
+    const {TanggalAbsen} = route.params;
+    
     const [isFlash, setFlash] = useState(false);
     const [loading, setLoading] = useState(false);
 
     // console.log("Scan" + useId)
+
+    if(TanggalAbsen === '')
+      {
+    
+      }
+      else
+      {
+        var date = TanggalAbsen.split(' ')[0];
+        var time = TanggalAbsen.split(' ')[1].split('.')[0];
+    
+        // console.log("date  : " + date)
+        // console.log("time  : " + time)
+      }
 
     const check =() => {
         setFlash(flash => !flash )
@@ -55,13 +69,34 @@ const Scan = ({route , navigation, } : any) => {
             } 
 
             setLoading(true)
+
+            let params 
+
+            if(TanggalAbsen === '')
+              {
+                 params = {
+                  student: e.data,
+                  event: useId ,
+                }
+              }
+              else
+              {
+                 params = {
+                  student: e.data,
+                  event: useId ,
+                  date : date,
+                  time : time
+                };
+         
+              }
+
+            // const params = {
+            //     student: e.data,
+            //     event: useId ,
+            // };
     
-            const params = {
-                student: e.data,
-                event: useId ,
-            };
-    
-    
+            // console.log("log params" + JSON.stringify(params))
+
             axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.attendance.api.present_student`, params, config)
             .then(response => {
               // Handle response

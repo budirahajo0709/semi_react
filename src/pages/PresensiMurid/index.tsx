@@ -11,21 +11,42 @@ import CircleFad from '../../component/atoms/CircleFad';
 import Colors from '../../component/atoms/Colors';
 import { BASE_URL } from '../../config';
 import {BASE_URL_STAG} from '@env';
+import DatePicker from 'react-native-date-picker';
+import moment from 'moment';
 
 const PresensiMurid = ({navigation} : {navigation:any}) => {
     const [checked, setChecked] = useState(0);
     const [usedata, setdata] = useState<any>([]);
     var gender = ['Male', 'Female'];
     const [useId, setUse] = useState('');
-
     const [isPopup, setIsPopup] = useState(false);
-
     const [loading, setLoading] = useState(false);
+
+
+    const [selected, setSelected] = useState('DARI SISTEM');
+    const options = ['DARI SISTEM', 'TENTUKAN SENDIRI'];
+    const [open, setOpen] = useState(false)
+    const [date, setDate] = useState(new Date())
+    const[TanggalAbsen, setanggal] = useState('');
     
 
     // console.log(checked)
     // console.log(useId)
 
+    useEffect (() =>{
+      if (selected === 'DARI SISTEM') 
+      {
+        setanggal('')
+      }
+      else
+      {
+        setanggal(moment(date).format('YYYY-MM-DD hh:mm:ss'))
+      }
+     
+    },[selected])
+
+    
+     console.log("Tanggal ", TanggalAbsen)
 
     useEffect(() => {
 
@@ -88,7 +109,6 @@ const PresensiMurid = ({navigation} : {navigation:any}) => {
     <ScrollView>
     
         <View>
-
         
           {usedata.map((usedata, key) => {
             return (
@@ -147,6 +167,21 @@ const PresensiMurid = ({navigation} : {navigation:any}) => {
 
     </ScrollView>
 
+    <DatePicker
+        modal
+        mode='datetime'
+        open={open}
+        date={date}
+        maximumDate={new Date}
+        onConfirm={(date) => {
+          setOpen(false)
+          setanggal(moment(date).format('YYYY-MM-DD hh:mm:ss'))
+        }}
+        onCancel={() => {
+          setOpen(false)
+        }}
+      />
+
 
       <View style={{height:70}}></View>
 
@@ -165,11 +200,63 @@ const PresensiMurid = ({navigation} : {navigation:any}) => {
                 <View style={styles.styleviewline}>
                 </View>
 
+                {options.map(option => {
+                          return (
+                            <TouchableOpacity
+                              key={option}
+                              style={styles.singleOptionContainer}
+                              onPress={() => setSelected(option)}>
+                              <View style={styles.outerCircle}>
+                                {selected === option ? (
+                                  <View style={styles.innerCircle} />
+                                ) : null}
+                              </View>
+                              <Text style={{fontWeight:'light'}}>{option}</Text>
+                            </TouchableOpacity>
+                          );
+                        })}
+
+              {/* <Text>{selected}</Text> */}
+
+              {selected==='DARI SISTEM' ? 
+                (
+                  <Text></Text>
+              
+                ) 
+                : 
+                (
+                  <View style={{
+                    marginTop:10,
+                    marginHorizontal:10,
+                    padding:10,
+                    backgroundColor:Colors.white,
+                    borderRadius:15,
+                    borderColor:Colors.black,
+                    elevation:2,
+                    borderWidth:1
+                    }}>
+
+                    <TouchableOpacity style={{flexDirection:'row'}} onPress={() => setOpen(true)}>
+    
+                    <Text style={{marginRight:20, flex:1}}>{TanggalAbsen}</Text>
+    
+                    <Image
+                      source={iccalender} //Change your icon image here
+                    />
+    
+                    </TouchableOpacity>
+
+                  </View>
+                  
+                )
+              }
+
                   <View style={styles.styleviewrow}>
 
                   <TouchableOpacity style={styles.styleSwipupTouchableOpacity} 
                     onPress={()=> { navigation.navigate('Pilih Murid', {
-                      useId
+                      useId, 
+                      TanggalAbsen
                     }) ; setIsPopup(false)} }>
 
                   <Text style={{fontWeight:'bold', color:'#fff'}}>TANPA SCAN</Text>
@@ -178,7 +265,8 @@ const PresensiMurid = ({navigation} : {navigation:any}) => {
 
                   <TouchableOpacity style={styles.styleSwipupTouchableOpacity} 
                     onPress={() => { navigation.navigate('Scan QR Code Murid', {
-                    useId
+                    useId, 
+                    TanggalAbsen
                     }) ; setIsPopup(false) }}>
 
                   <Text style={{fontWeight:'bold', color:'#fff'}} >SCAN</Text>
@@ -334,5 +422,27 @@ const styles = StyleSheet.create({
     paddingBottom:10,
     borderRadius:15, 
     elevation:2,
-  }
+  }, 
+
+  singleOptionContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: 10,
+    margin: 5,
+    marginTop:8
+  },
+  outerCircle: {
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    borderWidth: 1.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  innerCircle: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'black',
+  },
 })
