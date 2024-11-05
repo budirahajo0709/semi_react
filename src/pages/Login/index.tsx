@@ -1,18 +1,32 @@
-import { View, Text, Image, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView, ToastAndroid } from 'react-native'
+import { View, Text, Image, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView, ToastAndroid, TextInput, DevSettings } from 'react-native'
 import React, {useState } from 'react'
-import { icsemi, icseminew } from '../../asset/images'
+import { ichiddeneye, icseminew, icshoweye } from '../../asset/images'
 import { PoppinsText } from '../../asset/font'
 import TextInputLogin from '../../component/TextInputLogin'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import CircleFad from '../../component/atoms/CircleFad'
 import {BASE_URL_STAG} from '@env';
+import DeviceInfo from 'react-native-device-info'
 
 const Login = ({navigation} : {navigation:any}) => {
   const [phone_number, setPhone_number] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
+  // const version = DeviceInfo.getVersion();
+
+  const originalString = DeviceInfo.getVersion();
+  const trimmedString = originalString.replace(/\.0+$/, '');
+
+// console.log(trimmedString);
+
+//   console.log("versi " +trimmedString.toString)
+
+
+
+ 
   const HandleLogin = () => {
     if (!phone_number) {
       ToastAndroid.show('Please fill Phone Number !', ToastAndroid.SHORT);
@@ -39,12 +53,10 @@ const Login = ({navigation} : {navigation:any}) => {
           try{
             setLoading(false)
             AsyncStorage.setItem('AccesToken', response.data.data.token)
-  
-            // console.log(response.data.data)
-            navigation.replace('Home');
-            // navigation.navigate('Home') 
-            // navigation.clear('Login');
 
+            navigation.replace('Home');
+
+            
           }catch(error)
           {
             console.log(error)
@@ -69,6 +81,10 @@ const Login = ({navigation} : {navigation:any}) => {
 
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+};
+
   return (
 
     <SafeAreaView style={style.container} >
@@ -86,18 +102,43 @@ const Login = ({navigation} : {navigation:any}) => {
       <TextInputLogin 
         state={phone_number} 
         set={setPhone_number} 
-        keyboardType='numeric' 
+        keyboardType='number-pad' 
         placeholder='Masukkan nomor telepon' 
         isPassword={false}/>
 
       <PoppinsText style={style.textstyle}>Password</PoppinsText>
 
-      <TextInputLogin 
+
+        <View style={style.viewPassword}>
+
+          <TextInput
+              secureTextEntry={!showPassword}
+              value={password}
+              onChangeText={setPassword}
+              style={style.input}
+              placeholder="Masukkan Password"
+              />
+
+          <TouchableOpacity onPress={toggleShowPassword}>
+
+              {showPassword ? (
+                <Image source={ichiddeneye} style={{width:24, height:24} } />
+              ) : <Image source={icshoweye} style={{width:24, height:24}} />
+              }
+
+          </TouchableOpacity>
+        </View>
+  
+
+      {/* <TextInputLogin 
         state={password} 
         set={setPassword} 
-        keyboardType='text' 
+        keyboardType='default'
         placeholder='Masukkan Password' 
-        isPassword={true} />
+        isPassword={true} /> */}
+
+  
+
 
       <TouchableOpacity style={{marginHorizontal:10}}>
         <PoppinsText style={style.textlupastyle}
@@ -153,6 +194,23 @@ const style = StyleSheet.create({
     fontFamily: 'Poppins-Bold' , 
     color:'#000', 
     marginHorizontal:10
+  }, 
+  viewPassword:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+    marginHorizontal: 10,
+    marginVertical: 10,
+    borderRadius: 10,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#c9c9c9',
+    paddingRight:10,
+    paddingLeft: 10,
+  }, 
+  input:{
+    flex:1
   }
 })
 

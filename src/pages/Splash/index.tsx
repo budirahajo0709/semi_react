@@ -1,18 +1,69 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, ToastAndroid } from 'react-native'
 import React, { useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { icsemi, icseminew } from '../../asset/images'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DeviceInfo from 'react-native-device-info';
+import axios from 'axios';
+import {BASE_URL_STAG} from '@env';
 
 const Splash = ({navigation} : {navigation:any}) => {
 
-    useEffect(() => {
-        setTimeout( () => {
-            // navigation.replace('Login');
-            handleGetToken()
+  const originalString = DeviceInfo.getVersion();
+  const trimmedString = originalString.replace(/\.0+$/, '');
+
+  useEffect(() => {
+
+    const params = {
+      txtKode: trimmedString,
+      app: 'SeMi',
+    };
+
+    console.log("params",params )
+
+    axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.app_version.api.check_version`, params)
+      .then(response => {
+
+        console.log('A' , response.data)
+ 
+        if(response.data.meta.status_code == 200)
+        {   
         
-        }, 3000)
-    }, []);
+            // navigation.replace('Home')    
+            setTimeout( () => {
+              // navigation.replace('Login');
+              handleGetToken()
+          
+          }, 3000)
+
+        }
+        else
+        {
+          // setLoading(false)
+          ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+        }
+     
+      })
+      .catch(error => {
+        // Handle error
+        // setLoading(false)
+        console.log(error);
+        ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+        // Alert.alert("Login Failed", "Please check your credentials");
+      });
+
+
+  },[])
+
+
+
+    // useEffect(() => {
+    //     setTimeout( () => {
+    //         // navigation.replace('Login');
+    //         handleGetToken()
+        
+    //     }, 3000)
+    // }, []);
 
     const handleGetToken = async () => {
 
@@ -27,6 +78,7 @@ const Splash = ({navigation} : {navigation:any}) => {
           else 
           {
             navigation.replace('Home')
+
           }
 
       } catch(e){
