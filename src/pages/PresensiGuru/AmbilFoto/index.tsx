@@ -75,8 +75,13 @@ const AmbilFoto = ({route , navigation } : any) => {
               if(response.data.meta.status_code == 200)
               {   
                 setLoading(false)
-                ToastAndroid.show('Berhasil presensi', ToastAndroid.SHORT);
-                navigation.navigate('Home');
+                let aa = response.data.data
+                // ToastAndroid.show('Berhasil presensi', ToastAndroid.SHORT);
+                // navigation.navigate('Home');
+                navigation.navigate('Succces Absen', {
+                  aa
+                });
+
               }
               else
               {

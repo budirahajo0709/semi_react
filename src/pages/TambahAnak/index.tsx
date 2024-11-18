@@ -1,4 +1,4 @@
-import { Image, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Image, PermissionsAndroid, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { iccalender, iccamera, icchevrondown, icchevronup, icradioincheck, icradiouncheck } from '../../asset/images'
@@ -23,11 +23,11 @@ const TambahAnak = ({navigation} : any) => {
 
     const [checked, setChecked] = useState(0);
     var gender = ['Laki-Laki', 'Perempuan'];
-    var kelas_sd = ['1', '2', '3', '4', '5', '6'];
+    var kelas_sd = ['LULUS','1', '2', '3', '4', '5', '6'];
 
     const[UseTTL, SetTTL] = useState('');
     const [checkedStatus, setCheckedStatus] = useState(0);
-    var status = ['active', 'inactive'];
+    var status = ['inactive', 'active'];
 
     const[useAlamat, SetAlamat] = useState('');
 
@@ -42,6 +42,33 @@ const TambahAnak = ({navigation} : any) => {
     const [fileData, setFileData] = useState(null);
 
     const [loading, setLoading] = useState(false);
+
+    useEffect (() => {
+      requestCameraPermission()
+    }, [])
+
+
+    const requestCameraPermission = async () => {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          {
+            title: "App Camera Permission",
+            message:"App needs access to your camera ",
+            buttonNeutral: "Ask Me Later",
+            buttonNegative: "Cancel",
+            buttonPositive: "OK"
+          }
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log("Camera permission given");
+        } else {
+          console.log("Camera permission denied");
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    };
     
 
     useEffect (() => {
@@ -103,7 +130,7 @@ const TambahAnak = ({navigation} : any) => {
         else
         {
             setEnable(false)
-            setformal_class('1')
+            setformal_class('LULUS')
             // console.log("BBB")
         }
 
@@ -134,31 +161,32 @@ const TambahAnak = ({navigation} : any) => {
     
       }
     
-      const launchNativeImageLibrary = () => {
-        let options = {
-          includeBase64: true,
-          storageOptions: {
-            skipBackup: true,
-            path: 'images',
-          },
-        };
-        launchImageLibrary(options, (response) => {
-          // console.log('Response = ', response);
+      // const launchNativeImageLibrary = () => {
+      //   let options = {
+      //     includeBase64: true,
+      //     storageOptions: {
+      //       skipBackup: true,
+      //       path: 'images',
+      //     },
+      //   };
+      //   launchImageLibrary(options, (response) => {
+      //     // console.log('Response = ', response);
     
-          if (response.didCancel) {
-            console.log('User cancelled image picker');
-          } else if (response.errorCode) {
-            console.log('ImagePicker Error: ', response.error);
-          } else {
-            const source = { uri: response.assets.uri };
-            // console.log('response', JSON.stringify(response));
-            setFileData(response.assets[0].base64);
-            // setImage(response.assets[0].uri)
-          }
-        });
+      //     if (response.didCancel) {
+      //       console.log('User cancelled image picker');
+      //     } else if (response.errorCode) {
+      //       console.log('ImagePicker Error: ', response.error);
+      //     } else {
+      //       const source = { uri: response.assets.uri };
+      //       // console.log('response', JSON.stringify(response));
+      //       setFileData(response.assets[0].base64);
+      //       // setImage(response.assets[0].uri)
+      //     }
+      //   });
     
-      }
-    
+      // }
+
+      console.log("formal_class :  ", formal_class)
 
     const handlepost = async () => {
         // console.log("nama : ", UseName)
@@ -304,6 +332,7 @@ const TambahAnak = ({navigation} : any) => {
 
             <Text style={styles.textstyle}>Nama</Text>
             <TextInput 
+                 editable={!loading}
                 style={styles.inputstyle}
                 placeholder='Nama'
                 onChangeText={text =>  SetName(text)}
@@ -316,7 +345,7 @@ const TambahAnak = ({navigation} : any) => {
             <TouchableOpacity style={styles.SectionStyle} onPress={() => setOpen(true)}>
             <TextInput
                 editable={false}
-                style={{ flex: 1}}
+                style={{ flex: 1, color:'#000000'}}
                 onChangeText={text => setanggal(text)}
                 value={useTtl} 
             />
@@ -455,6 +484,7 @@ const TambahAnak = ({navigation} : any) => {
 
             <Text style={styles.textstyle}>Tempat Lahir</Text>
             <TextInput 
+                editable={!loading}
                 style={styles.inputstyle}
                 placeholder=''
                 onChangeText={text =>  SetTTL(text)}
@@ -521,6 +551,7 @@ const TambahAnak = ({navigation} : any) => {
                     borderColor:'#c9c9c9',               
                     paddingLeft:10,
                     paddingVertical:10}}
+                editable={!loading}
                 placeholder=''
                 multiline={true}
                 onChangeText={text =>  SetAlamat(text)}
@@ -565,9 +596,9 @@ const TambahAnak = ({navigation} : any) => {
                         <PoppinsText>Select Image Photo</PoppinsText>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={{marginLeft:16}} onPress={() => {launchNativeImageLibrary() ;  setIsShowSettingFav(false) }}>
+                        {/* <TouchableOpacity style={{marginLeft:16}} onPress={() => {launchNativeImageLibrary() ;  setIsShowSettingFav(false) }}>
                         <PoppinsText>Select Image Galery</PoppinsText>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                 
                     </View> 
                 }
@@ -630,8 +661,8 @@ const styles = StyleSheet.create({
         backgroundColor:'#fff'
     },
     imagestyle:{
-        width:24, 
-        height:24, 
+        width:45, 
+        height:45, 
     },
     replaceimagestyle:{
         flexDirection:'row', 

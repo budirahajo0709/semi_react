@@ -9,6 +9,7 @@ import axios from 'axios';
 import CircleFad from '../../../component/atoms/CircleFad';
 import { BASE_URL } from '../../../config';
 import {BASE_URL_STAG} from '@env';
+import Colors from '../../../component/atoms/Colors';
 
 const Scan = ({route , navigation, } : any) => {
     const {useId} = route.params;
@@ -17,6 +18,7 @@ const Scan = ({route , navigation, } : any) => {
     const [isFlash, setFlash] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    
     // console.log("Scan" + useId)
 
     if(TanggalAbsen === '')
@@ -46,7 +48,7 @@ const Scan = ({route , navigation, } : any) => {
           
           ),
           headerStyle: {
-            backgroundColor: '#f4511e',
+            backgroundColor: Colors.redapp,
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -105,8 +107,18 @@ const Scan = ({route , navigation, } : any) => {
               if(response.data.meta.status_code == 200)
               {   
                 setLoading(false)
-                ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
-                navigation.navigate('Home');
+
+                let aa = response.data.data
+         
+             
+                // ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+                // navigation.navigate('Home');
+
+                navigation.navigate('Succces',{
+                  aa, 
+                  useId : useId,
+                  TanggalAbsen : TanggalAbsen
+                });
               }
               else
               {
@@ -146,8 +158,11 @@ const Scan = ({route , navigation, } : any) => {
             
              
               reactivate={true}
-              reactivateTimeout={100}
+              reactivateTimeout={5000}
               showMarker={true}
+              cameraProps={{
+                autoFocus:'on'
+              }}
 
               
 
