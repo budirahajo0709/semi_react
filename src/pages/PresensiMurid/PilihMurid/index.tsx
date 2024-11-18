@@ -209,8 +209,19 @@ interface nama_title {
         if(response.data.meta.status_code == 200)
         {   
           setLoading(false)
-          ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
-          navigation.navigate('Home');
+
+          let aa = response.data.data
+
+          // ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+          // navigation.navigate('Home');
+
+          navigation.navigate('Succces Pilih',{
+            aa,
+            useId : useId,
+            TanggalAbsen : TanggalAbsen
+          });
+
+          
         }
         else
         {

@@ -19,6 +19,9 @@ import Lokasi from '../pages/LogPresensi/Lokasi';
 import LupaPassword from '../pages/LupaPassword';
 import GantiPassword from '../pages/LupaPassword/GantiPassword';
 import TambahAnak from '../pages/TambahAnak';
+import BerhasilScan from '../pages/PresensiMurid/Scan/BerhasilScan';
+import BerhasilPilih from '../pages/PresensiMurid/PilihMurid/BerhasilPilih';
+import BerhasilAbsen from '../pages/PresensiGuru/AmbilFoto/BerhasilAbsen';
 
 
 const Router = () => {
@@ -152,6 +155,32 @@ const Router = () => {
           }} /> 
           <Stack.Screen name="Tambah Murid" component={TambahAnak} options={{
           headerShown:true, 
+          orientation:'portrait',
+          headerTintColor:'#fff', 
+          headerStyle:{
+            backgroundColor: '#df1e4d'
+          },
+          }} /> 
+          <Stack.Screen name="Succces" component={BerhasilScan} options={{
+          headerShown:false, 
+          orientation:'portrait',
+          headerTintColor:'#fff', 
+          headerStyle:{
+            backgroundColor: '#df1e4d'
+          },
+          }} /> 
+
+         <Stack.Screen name="Succces Pilih" component={BerhasilPilih} options={{
+          headerShown:false, 
+          orientation:'portrait',
+          headerTintColor:'#fff', 
+          headerStyle:{
+            backgroundColor: '#df1e4d'
+          },
+          }} /> 
+
+          <Stack.Screen name="Succces Absen" component={BerhasilAbsen} options={{
+          headerShown:false, 
           orientation:'portrait',
           headerTintColor:'#fff', 
           headerStyle:{

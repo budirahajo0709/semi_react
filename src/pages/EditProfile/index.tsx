@@ -56,10 +56,23 @@ const EditProfile = ({route , navigation} : any) => {
       headerRight: () => (
 
         <TouchableOpacity onPress={()=> {AsyncStorage.removeItem('AccesToken') ; 
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'Login' }]
-          });
+
+          Alert.alert('Hold on!', 'Are you sure you want to logout?', [
+            {
+              text: 'Cancel',
+              onPress: () => null,
+              style: 'cancel',
+            },
+
+            {text: 'YES', onPress: () => Exit()},
+            ]);
+
+            return true;
+          
+          // navigation.reset({
+          //   index: 0,
+          //   routes: [{ name: 'Login' }]
+          // });
         }} > 
        
         <Image source={iclogout} style={{width:26, height:26}} />
@@ -75,6 +88,13 @@ const EditProfile = ({route , navigation} : any) => {
       },
     });
   }, [navigation]);
+
+  const Exit = () => {
+            navigation.reset({
+            index: 0,
+            routes: [{ name: 'Login' }]
+          });
+  }
 
 
   const requestCameraPermission = async () => {
@@ -172,30 +192,30 @@ const EditProfile = ({route , navigation} : any) => {
   }
 
 
-  const launchNativeImageLibrary = () => {
-    let options = {
-      includeBase64: true,
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-    launchImageLibrary(options, (response) => {
-      // console.log('Response = ', response);
+  // const launchNativeImageLibrary = () => {
+  //   let options = {
+  //     includeBase64: true,
+  //     storageOptions: {
+  //       skipBackup: true,
+  //       path: 'images',
+  //     },
+  //   };
+  //   launchImageLibrary(options, (response) => {
+  //     // console.log('Response = ', response);
 
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.errorCode) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
-        const source = { uri: response.assets.uri };
-        // console.log('response', JSON.stringify(response));
-        setFileData(response.assets[0].base64);
-        setImage(response.assets[0].uri)
-      }
-    });
+  //     if (response.didCancel) {
+  //       console.log('User cancelled image picker');
+  //     } else if (response.errorCode) {
+  //       console.log('ImagePicker Error: ', response.error);
+  //     } else {
+  //       const source = { uri: response.assets.uri };
+  //       // console.log('response', JSON.stringify(response));
+  //       setFileData(response.assets[0].base64);
+  //       setImage(response.assets[0].uri)
+  //     }
+  //   });
 
-  }
+  // }
 
 
   const HadleUpdate = async () => {
@@ -358,6 +378,7 @@ const EditProfile = ({route , navigation} : any) => {
 
     <PoppinsText style={styles.textstyle}>Nama</PoppinsText>
       <TextInput 
+        editable={!loading}
         style={styles.inputstyle}
         placeholder='Nama'
         onChangeText={text =>  setnama(text)}
@@ -367,6 +388,7 @@ const EditProfile = ({route , navigation} : any) => {
   
       <PoppinsText style={styles.textstyle}>Telepon</PoppinsText>
       <TextInput 
+        editable={!loading}
         style={styles.inputstyle}
         keyboardType='numeric'
         placeholder='6281012382722'
@@ -381,8 +403,9 @@ const EditProfile = ({route , navigation} : any) => {
       <TouchableOpacity style={styles.SectionStyle} onPress={() => setOpen(true)}>
 
     <TextInput
+
         editable={false}
-        style={{ flex: 1}}
+        style={{ flex: 1, color:'#000000'}}
         onChangeText={text => setanggal(text)}
         value={useTtl} 
     />
@@ -409,7 +432,7 @@ const EditProfile = ({route , navigation} : any) => {
         }}
       />
 
-      {loading ? ( <CircleFad/> ) : (<View></View>)}
+      {loading ? (<CircleFad/>) : (<View></View>)}
 
       <TouchableOpacity style={styles.styleTouchableOpacity} >
         <PoppinsText 
@@ -434,9 +457,9 @@ const EditProfile = ({route , navigation} : any) => {
               <PoppinsText>Select Image Photo</PoppinsText>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{marginLeft:16}} onPress={() => {launchNativeImageLibrary() ;  setIsShowSettingFav(false) }}>
+            {/* <TouchableOpacity style={{marginLeft:16}} onPress={() => {launchNativeImageLibrary() ;  setIsShowSettingFav(false) }}>
               <PoppinsText>Select Image Galery</PoppinsText>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
     
           </View> 
       }

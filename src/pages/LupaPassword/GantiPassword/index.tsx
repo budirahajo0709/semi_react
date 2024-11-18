@@ -1,4 +1,4 @@
-import { Alert, SafeAreaView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import CountDown from 'react-native-countdown-component';
@@ -8,6 +8,8 @@ import axios from 'axios';
 import CircleFad from '../../../component/atoms/CircleFad';
 import { BASE_URL } from '../../../config';
 import {BASE_URL_STAG} from '@env';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { ichiddeneye, icshoweye } from '../../../asset/images';
 
 const GantiPassword = ({route , navigation } : any) => {
   const {phone_number} = route.params;
@@ -22,6 +24,8 @@ const GantiPassword = ({route , navigation } : any) => {
   const[dataExpires, setDataExpired] = useState(date_expired);
 
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+
 
 
   useEffect(() => {
@@ -38,7 +42,7 @@ const GantiPassword = ({route , navigation } : any) => {
 
     calculateDuration();
     setUseText(true) // Call the function to calculate duration
-  }, [dataExpires]); // Empty dependency array to ensure it runs only once after mounting
+  }, [dataExpires,]); // Empty dependency array to ensure it runs only once after mounting
 
   if (totalDuration === null) return <Text>Loading...</Text>; // Show loading while calculating
 
@@ -115,7 +119,7 @@ const GantiPassword = ({route , navigation } : any) => {
         if(response.data.meta.status_code == 200)
         {   
           setLoading(false)
-          navigation.replace('Home');
+          navigation.replace('Login');
           ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
         }
         else
@@ -137,12 +141,18 @@ const GantiPassword = ({route , navigation } : any) => {
 
   }
 
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+};
+
   console.log(dataExpires)
 
   return (
 
     <SafeAreaView style={styles.container}>
     <View style={styles.styleview}>
+
+    <ScrollView>
 
 
     {loading ? (<CircleFad/>) : (<View></View>)}
@@ -172,18 +182,48 @@ const GantiPassword = ({route , navigation } : any) => {
 
       <TouchableOpacity  disabled={useText} onPress={()=> handlekirimulang()}>
 
-      <Text style={{color:'#000'}}> Kirim ulang Kode OTP
+      <Text style={{color:'#000', marginTop:10}}> Kirim ulang Kode OTP
       </Text>
       </TouchableOpacity>
 
+      <Text style={{color:'#000', marginTop:12}}>Masukkan Password Baru</Text>
 
-      <TextInputLogin 
+      <View style={styles.viewPassword}>
+
+      <TextInput
+          secureTextEntry={!showPassword}
+          value={password}
+          onChangeText={setPassword}
+          style={styles.input}
+          placeholder="Masukkan Password"
+          />
+
+      <TouchableOpacity onPress={toggleShowPassword}>
+
+        {showPassword ? (
+          <Image source={ichiddeneye} style={{width:24, height:24} } />
+          ) : <Image source={icshoweye} style={{width:24, height:24}} />
+          }
+
+</TouchableOpacity>
+</View>
+
+
+      {/* <TextInputLogin 
       state={password} 
       set={setPassword} 
-      keyboardType='text' 
+      keyboardType='default' 
       placeholder='Masukkan Password' 
-      isPassword={true} />
+      isPassword={true} /> */}
+
+      <View style={{marginTop:40}}>
+
+      </View>
       
+
+
+      </ScrollView>
+
       <TouchableOpacity style={styles.styleTouchableOpacity}  
           onPress={()=>  handlekirimAPI()}>
         <PoppinsText 
@@ -205,8 +245,9 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff'
   }, 
   styleview:{
-    margin:16, 
-    flex:1
+    flex:1,
+    margin:16,
+    backgroundColor:Colors.white
   }, 
   styleInputOtp:{
     backgroundColor:'#ffffff', 
@@ -238,5 +279,22 @@ const styles = StyleSheet.create({
     textAlign:'center',
     fontWeight:'bold',
     fontSize:20
+  }, 
+  viewPassword:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+    marginHorizontal: 10,
+    marginVertical: 10,
+    borderRadius: 10,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#c9c9c9',
+    paddingRight:10,
+    paddingLeft: 10,
+  }, 
+  input:{
+    flex:1
   }
 });

@@ -176,7 +176,7 @@ const LogPresensi = ({navigation} : {navigation:any}) => {
     
                     <TextInput
                         editable={false}
-                        style={{ flex: 1}}
+                        style={{ flex: 1, color:'#000'}}
                         placeholder='start date'
                         onChangeText={text => setStart(text)}
                         value={usestart}
@@ -200,7 +200,7 @@ const LogPresensi = ({navigation} : {navigation:any}) => {
     
                     <TextInput
                         editable={false}
-                        style={{ flex: 1}}
+                        style={{ flex: 1, color:'#000'}}
                         placeholder='end date'
                         onChangeText={text => setEnd(text)}
                         value={useend}

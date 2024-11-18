@@ -19,3 +19,4 @@ export const icaddkelas = require('./ic_addkelas.png');
 export const icseminew = require('./ic_semi_new.png');
 export const icshoweye = require('./show_eye.png');
 export const ichiddeneye = require('./hidden_eye.png');
+export const icSucces = require('./ic_succes_semi.png');

@@ -34,7 +34,7 @@ const PilihIbadah = ({route , navigation, } : any) => {
           }
         } 
     
-        axios.get(`${BASE_URL_STAG}/kidsgbigama_api.api.event.api.list?page=1&per_page=5`, config)
+        axios.get(`${BASE_URL_STAG}/kidsgbigama_api.api.event.api.list?page=1&per_page=10`, config)
           .then(response => {
             // Handle response
             // console.log(response.data);
