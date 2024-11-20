@@ -82,7 +82,7 @@ const DetailLokasi = ({route , navigation } : any) => {
       <Text style={styles.styleTextEvent}>{name.name}</Text>
       <Text style={styles.styleTextTime}>{data.date} - {data.time}</Text>
 
-      <TouchableOpacity style={styles.styleTouchableOpacity}
+      {/* <TouchableOpacity style={styles.styleTouchableOpacity}
           onPress={() => 
       
           navigation.navigate('Lokasi', {
@@ -96,7 +96,7 @@ const DetailLokasi = ({route , navigation } : any) => {
         }}>    
         </Image>
         <Text style={styles.texttextlokasi}>Lihat Lokasi</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
     </View>
     </SafeAreaView>

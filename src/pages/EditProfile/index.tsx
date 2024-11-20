@@ -454,7 +454,7 @@ const EditProfile = ({route , navigation} : any) => {
           <View style={styles.viewStyle}>
 
             <TouchableOpacity style={{margin:16}} onPress={()=> {launchNativeCamera() ; setIsShowSettingFav(false)} }>
-              <PoppinsText>Select Image Photo</PoppinsText>
+              <PoppinsText>Take camera photo</PoppinsText>
             </TouchableOpacity>
 
             {/* <TouchableOpacity style={{marginLeft:16}} onPress={() => {launchNativeImageLibrary() ;  setIsShowSettingFav(false) }}>
