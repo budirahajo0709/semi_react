@@ -10,7 +10,7 @@ import {BASE_URL_STAG} from '@env';
 
 
 const PilihIbadah = ({route , navigation, } : any) => {
-  const {lokasi} = route.params;
+  // const {lokasi} = route.params;
 
   const [checked, setChecked] = useState(0);
   const [usedata, setdata] = useState<any>([]);
@@ -69,13 +69,13 @@ const PilihIbadah = ({route , navigation, } : any) => {
 
   const handlesubmit = () =>{
       let event = useId;
-      let lokasi_lat = lokasi.latitude;
-      let lokasi_long = lokasi.longitude;
+      // let lokasi_lat = lokasi.latitude;
+      // let lokasi_long = lokasi.longitude;
 
       navigation.navigate('Ambil Foto', {
         event: event,
-        lokasi_lat: lokasi_lat,
-        lokasi_long: lokasi_long
+        // lokasi_lat: lokasi_lat,
+        // lokasi_long: lokasi_long
       });
     }
 

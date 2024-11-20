@@ -371,7 +371,9 @@ const Home = ({navigation , route} : any) => {
 
       <View style={styles.viewbottonrow}>
 
-        <TouchableOpacity style={{alignItems:'center'}} onPress={() => navigation.navigate('Masuk')}>
+        <TouchableOpacity style={{alignItems:'center'}} onPress={() => 
+          // navigation.navigate('Masuk')}>
+          navigation.navigate('Pilih Ibadah')}>
           <Image 
             source={icpresensiguru} >
           </Image>

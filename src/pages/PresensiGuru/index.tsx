@@ -143,8 +143,8 @@ const PresensiGuru = ( {navigation} : {navigation:any}) => {
       initialRegion={{
         latitude: initialRegion?.latitude ,
         longitude: initialRegion?.longitude,
-        latitudeDelta: 0.05,
-        longitudeDelta: 0.0121,
+        latitudeDelta: 0.004,
+        longitudeDelta: 0.004,
       }}
     >
 

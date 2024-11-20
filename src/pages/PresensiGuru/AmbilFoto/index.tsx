@@ -12,8 +12,8 @@ import {BASE_URL_STAG} from '@env';
 
 const AmbilFoto = ({route , navigation } : any) => {
     const {event} = route.params;
-    const {lokasi_lat} = route.params;
-    const {lokasi_long} = route.params;
+    // const {lokasi_lat} = route.params;
+    // const {lokasi_long} = route.params;
 
     const [fileData, setFileData] = useState(null);
     const [value, setValue] = useState('Open Camera');
@@ -62,15 +62,15 @@ const AmbilFoto = ({route , navigation } : any) => {
             const params = {
                 event: event,
                 image: 'data:image/jpeg;base64,' + fileData,
-                latitude: lokasi_lat,
-                longitude: lokasi_long,
+                // latitude: lokasi_lat,
+                // longitude: lokasi_long,
                 type: 'masuk',
             };  
     
             axios.post(`${BASE_URL_STAG}/kidsgbigama_api.api.attendance.api.present_instructor`, params, config)
             .then(response => {
               // Handle response
-              // console.log(response.data);
+              console.log(response.data);
               // Alert.alert("Login Successful", "Welcome back!");
               if(response.data.meta.status_code == 200)
               {   
@@ -106,6 +106,8 @@ const AmbilFoto = ({route , navigation } : any) => {
 
      const launchNativeCamera = async () => {
         let options = {
+          mediaType: 'photo',
+          cameraType:'front',
           includeBase64: true,
           storageOptions: {
             skipBackup: true,
