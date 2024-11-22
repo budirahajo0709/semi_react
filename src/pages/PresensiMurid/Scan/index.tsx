@@ -1,4 +1,4 @@
-import { Alert, Button, Image, Linking, StyleSheet, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Alert, Button, Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
@@ -10,6 +10,7 @@ import CircleFad from '../../../component/atoms/CircleFad';
 import { BASE_URL } from '../../../config';
 import {BASE_URL_STAG} from '@env';
 import Colors from '../../../component/atoms/Colors';
+import Toast from 'react-native-simple-toast';
 
 const Scan = ({route , navigation, } : any) => {
     const {useId} = route.params;
@@ -123,7 +124,7 @@ const Scan = ({route , navigation, } : any) => {
               else
               {
                 setLoading(false)
-                ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+                Toast.show(''+ response.data.meta.message, Toast.SHORT);
               }
            
             })
@@ -131,7 +132,7 @@ const Scan = ({route , navigation, } : any) => {
               // Handle error
               setLoading(false)
               console.log(error);
-              ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+              Toast.show(''+ error, Toast.SHORT);
               // Alert.alert("Login Failed", "Please check your credentials");
             });
     

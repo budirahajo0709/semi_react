@@ -1,4 +1,4 @@
-package com.test
+package com.icc.segakids
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

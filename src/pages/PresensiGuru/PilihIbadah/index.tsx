@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -7,6 +7,7 @@ import { icradioincheck, icradiouncheck } from '../../../asset/images';
 import CircleFad from '../../../component/atoms/CircleFad';
 import { BASE_URL } from '../../../config';
 import {BASE_URL_STAG} from '@env';
+import Toast from 'react-native-simple-toast';
 
 
 const PilihIbadah = ({route , navigation, } : any) => {
@@ -49,7 +50,7 @@ const PilihIbadah = ({route , navigation, } : any) => {
             else
             {
               setLoading(false)
-              ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+              Toast.show(''+ response.data.meta.message, Toast.SHORT);
             }
          
           })
@@ -57,7 +58,7 @@ const PilihIbadah = ({route , navigation, } : any) => {
             // Handle error
             setLoading(false)
             console.log(error);
-            ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+            Toast.show(''+ error, Toast.SHORT);
             // Alert.alert("Login Failed", "Please check your credentials");
           });
   

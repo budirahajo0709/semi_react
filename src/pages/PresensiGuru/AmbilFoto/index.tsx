@@ -1,4 +1,4 @@
-import { Image, PermissionsAndroid, SafeAreaView, StyleSheet, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Image, PermissionsAndroid, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { launchCamera } from 'react-native-image-picker';
 import axios from 'axios';
@@ -9,6 +9,7 @@ import { Circle } from 'react-native-maps';
 import CircleFad from '../../../component/atoms/CircleFad';
 import { BASE_URL } from '../../../config';
 import {BASE_URL_STAG} from '@env';
+import Toast from 'react-native-simple-toast';
 
 const AmbilFoto = ({route , navigation } : any) => {
     const {event} = route.params;
@@ -86,7 +87,7 @@ const AmbilFoto = ({route , navigation } : any) => {
               else
               {
                 setLoading(false)
-                ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+                Toast.show(''+ response.data.meta.message, Toast.SHORT);
               }
    
            
@@ -96,7 +97,7 @@ const AmbilFoto = ({route , navigation } : any) => {
               setLoading(false)
               console.log(error);
               // Alert.alert("Login Failed", "Please check your credentials");
-              ToastAndroid.show(error, ToastAndroid.SHORT);
+              Toast.show(error, Toast.SHORT);
             });
     
           } catch(e){

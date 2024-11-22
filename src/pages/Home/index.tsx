@@ -1,4 +1,4 @@
-import {  FlatList, Image, ImageBackground, StyleSheet, Text, View , Dimensions, TouchableOpacity, ToastAndroid, Alert, BackHandler} from 'react-native'
+import {  FlatList, Image, ImageBackground, StyleSheet, Text, View , Dimensions, TouchableOpacity, Alert, BackHandler} from 'react-native'
 import React, { useEffect , useRef, useState} from 'react'
 import { icbackground, iclogout, icsemi, icedit, icpresensimurid, icpresensiguru, icpresensilog, icaddkelas, icseminew } from '../../asset/images'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -13,6 +13,7 @@ import Colors from '../../component/atoms/Colors'
 import { useFocusEffect, useRoute } from '@react-navigation/native'
 import Dialog from "react-native-dialog";
 import {BASE_URL_STAG} from '@env';
+import Toast from 'react-native-simple-toast';
 
 
 
@@ -95,7 +96,7 @@ const Home = ({navigation , route} : any) => {
           }
           else
           {
-            ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+            Toast.show(''+ response.data.meta.message, Toast.SHORT);
             setLoading(false)
           }
        
@@ -104,7 +105,7 @@ const Home = ({navigation , route} : any) => {
           setLoading(false)
           // Handle error
           console.log(error);
-          ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+          Toast.show(''+ error, Toast.SHORT);
           // Alert.alert("Login Failed", "Please check your credentials");
         });
 
@@ -148,14 +149,14 @@ const Home = ({navigation , route} : any) => {
           }
           else
           {
-            ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+            Toast.show(''+ response.data.meta.message, Toast.SHORT);
           }
        
         })
         .catch(error => {
           // Handle error
           console.log(error);
-          ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+          Toast.show(''+ error, Toast.SHORT);
           // Alert.alert("Login Failed", "Please check your credentials");
         });
 

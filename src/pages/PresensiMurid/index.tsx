@@ -1,4 +1,4 @@
-import { Image, ScrollView, StyleSheet, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { iccalender, iccamera, icradioincheck, icradiouncheck, icsemi } from '../../asset/images';
 import axios from 'axios';
@@ -13,6 +13,7 @@ import { BASE_URL } from '../../config';
 import {BASE_URL_STAG} from '@env';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
+import Toast from 'react-native-simple-toast';
 
 const PresensiMurid = ({navigation} : {navigation:any}) => {
     const [checked, setChecked] = useState(0);
@@ -80,7 +81,7 @@ const PresensiMurid = ({navigation} : {navigation:any}) => {
               }
               else
               {
-                ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+                Toast.show(''+ response.data.meta.message, Toast.SHORT);
                 setLoading(false)
               }
            
@@ -89,7 +90,7 @@ const PresensiMurid = ({navigation} : {navigation:any}) => {
               // Handle error
               setLoading(false)
               console.log(error);
-              ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+              Toast.show(''+ error, Toast.SHORT);
               // Alert.alert("Login Failed", "Please check your credentials");
             });
     

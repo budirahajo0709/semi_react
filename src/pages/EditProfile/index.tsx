@@ -1,4 +1,4 @@
-import { Alert, Button, Image, PermissionsAndroid, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Alert, Button, Image, PermissionsAndroid, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { iccalender, iccamera, icedit, iclogout, icpresensilog } from '../../asset/images'
@@ -14,8 +14,8 @@ import axios from 'axios'
 import CircleFad from '../../component/atoms/CircleFad'
 import Colors from '../../component/atoms/Colors'
 import DialogButton from 'react-native-dialog/lib/Button'
-
 import {BASE_URL_STAG} from '@env';
+import Toast from 'react-native-simple-toast';
 
 const EditProfile = ({route , navigation} : any) => {
 
@@ -222,13 +222,13 @@ const EditProfile = ({route , navigation} : any) => {
 
     if (!usname) {
       // Toast('Please fill Email');
-      ToastAndroid.show('Please fill Name !', ToastAndroid.SHORT);
+      Toast.show('Please fill Name !', Toast.SHORT);
       return;
     }
 
     if (!ustelepon) {
       // Toast('Please fill Email');
-      ToastAndroid.show('Please fill Phone Number !', ToastAndroid.SHORT);
+      Toast.show('Please fill Phone Number !', Toast.SHORT);
       return;
     }
 
@@ -261,7 +261,7 @@ const EditProfile = ({route , navigation} : any) => {
           if(response.data.meta.status_code == 200)
           {   
             setLoading(false)
-            ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+            Toast.show(''+ response.data.meta.message, Toast.SHORT);
 
             // setUserInfo(response.data.data)
 
@@ -272,7 +272,7 @@ const EditProfile = ({route , navigation} : any) => {
           else
           {
             setLoading(false)
-            ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+            Toast.show(''+ response.data.meta.message, Toast.SHORT);
           }
        
         })
@@ -280,7 +280,7 @@ const EditProfile = ({route , navigation} : any) => {
           // Handle error
           setLoading(false)
           console.log(error);
-          ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+          Toast.show(''+ error, Toast.SHORT);
           // Alert.alert("Login Failed", "Please check your credentials");
         });
 
@@ -323,7 +323,7 @@ const EditProfile = ({route , navigation} : any) => {
           if(response.data.meta.status_code == 200)
           {   
             setLoading(false)
-            ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+            Toast.show(''+ response.data.meta.message, Toast.SHORT);
             // navigation.replace('Home');
             refresdata()
             navigation.goBack('Home');
@@ -331,7 +331,7 @@ const EditProfile = ({route , navigation} : any) => {
           else
           {
             setLoading(false)
-            ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+            Toast.show(''+ response.data.meta.message, Toast.SHORT);
           }
        
         })
@@ -339,7 +339,7 @@ const EditProfile = ({route , navigation} : any) => {
           // Handle error
           setLoading(false)
           console.log(error);
-          ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+          Toast.show(''+ error, Toast.SHORT);
           // Alert.alert("Login Failed", "Please check your credentials");
         });
 

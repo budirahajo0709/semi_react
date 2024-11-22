@@ -1,4 +1,4 @@
-import { View, Text, Image, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView, ToastAndroid, TextInput, DevSettings } from 'react-native'
+import { View, Text, Image, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView, TextInput, DevSettings } from 'react-native'
 import React, {useState } from 'react'
 import { ichiddeneye, icseminew, icshoweye } from '../../asset/images'
 import { PoppinsText } from '../../asset/font'
@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import CircleFad from '../../component/atoms/CircleFad'
 import {BASE_URL_STAG} from '@env';
 import DeviceInfo from 'react-native-device-info'
+import Toast from 'react-native-simple-toast';
 
 const Login = ({navigation} : {navigation:any}) => {
   const [phone_number, setPhone_number] = useState('');
@@ -29,12 +30,12 @@ const Login = ({navigation} : {navigation:any}) => {
  
   const HandleLogin = () => {
     if (!phone_number) {
-      ToastAndroid.show('Please fill Phone Number !', ToastAndroid.SHORT);
+      Toast.show('Please fill Phone Number !', Toast.SHORT);
       return;
     }
     
     if (!password) {
-      ToastAndroid.show('Please fill Password !', ToastAndroid.SHORT);
+      Toast.show('Please fill Password !', Toast.SHORT);
       return;
     }
    
@@ -67,7 +68,7 @@ const Login = ({navigation} : {navigation:any}) => {
         else
         {
           setLoading(false)
-          ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+          Toast.show(''+ response.data.meta.message, Toast.SHORT);
         }
      
       })
@@ -75,7 +76,7 @@ const Login = ({navigation} : {navigation:any}) => {
         // Handle error
         setLoading(false)
         console.log(error);
-        ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+        Toast.show(''+ error, Toast.SHORT);
         // Alert.alert("Login Failed", "Please check your credentials");
       });
 

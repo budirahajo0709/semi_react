@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { iccamera } from '../../asset/images'
 import MapView, { Circle, Marker, PROVIDER_GOOGLE } from 'react-native-maps'
@@ -12,6 +12,7 @@ import { getDistance } from 'geolib';
 import CircleFad from '../../component/atoms/CircleFad';
 import { BASE_URL } from '../../config';
 import {BASE_URL_STAG} from '@env';
+import Toast from 'react-native-simple-toast';
 
 
 
@@ -64,14 +65,14 @@ const PresensiGuru = ( {navigation} : {navigation:any}) => {
           }
           else
           {
-            ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+            Toast.show(''+ response.data.meta.message, Toast.SHORT);
           }
        
         })
         .catch(error => {
           // Handle error
           console.log(error);
-          ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+          Toast.show(''+ error, Toast.SHORT);
           // Alert.alert("Login Failed", "Please check your credentials");
         })
         .finally
@@ -116,7 +117,7 @@ const PresensiGuru = ( {navigation} : {navigation:any}) => {
   const handleLanjut = () => {
     if(textvalue === 'di luar')
     {
-      ToastAndroid.show('Anda berada di luar radius', ToastAndroid.SHORT);
+      Toast.show('Anda berada di luar radius', Toast.SHORT);
     }
     else
     {
