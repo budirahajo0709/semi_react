@@ -1,4 +1,27 @@
 {
+  "expo": {
+    "name": "Sega Kids",
+    "slug": "Sega-Kids",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "2.0.0",
+    "ios": {
+      "bundleIdentifier": "com.icc.segakids",
+      "buildNumber": "2"
+    },
+    "android": {
+      "package": "com.icc.segakids",
+      "versionCode": 2
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ff01ea9c-7723-4aea-b139-62a4561ece82"
+      }
+    },
+    "owner": "jumanto14"
+  },
   "name": "Test",
-  "displayName": "Test"
+  "displayName": "Sega Kids"
 }

@@ -1,9 +1,10 @@
-import { SafeAreaView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { PoppinsText } from '../../asset/font'
 import axios from 'axios';
 import CircleFad from '../../component/atoms/CircleFad';
 import {BASE_URL_STAG} from '@env';
+import Toast from 'react-native-simple-toast';
 
 const LupaPassword = ({navigation} : any) => {
     const[ustelepon, setelepon] = useState('');
@@ -12,7 +13,7 @@ const LupaPassword = ({navigation} : any) => {
     const handleOtp =() => {
         // console.log("Telepon"+ ustelepon)
         if (!ustelepon) {
-            ToastAndroid.show('Please fill Phone Number !', ToastAndroid.SHORT);
+          Toast.show('Please fill Phone Number !', Toast.SHORT);
             return;
           }
 
@@ -40,7 +41,7 @@ const LupaPassword = ({navigation} : any) => {
               else
               {
                 setLoading(false)
-                ToastAndroid.show(''+ response.data.data.message, ToastAndroid.SHORT);
+                Toast.show(''+ response.data.data.message, Toast.SHORT);
               }
            
             })
@@ -48,7 +49,7 @@ const LupaPassword = ({navigation} : any) => {
               setLoading(false)
               // Handle error
               console.log(error);
-              ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+              Toast.show(''+ error, Toast.SHORT);
               // Alert.alert("Login Failed", "Please check your credentials");
             });
     }

@@ -1,4 +1,4 @@
-import { Alert, FlatList, Image, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Alert, FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState, useRef } from 'react'
 import SelectDropdown from 'react-native-select-dropdown';
 import { iccalender, iccamera, icchevrondown, icchevronup } from '../../../asset/images';
@@ -10,6 +10,7 @@ import Colors from '../../../component/atoms/Colors';
 import { BASE_URL } from '../../../config';
 import {BASE_URL_STAG} from '@env';
 import moment from 'moment';
+import Toast from 'react-native-simple-toast';
 
 
 
@@ -92,7 +93,7 @@ interface nama_title {
           else
           {
             setLoading(false)
-            ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+            Toast.show(''+ response.data.meta.message, Toast.SHORT);
           }
        
         })
@@ -100,7 +101,7 @@ interface nama_title {
           // Handle error
           setLoading(false)
           console.log(error);
-          ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+          Toast.show(''+ error, Toast.SHORT);
           // Alert.alert("Login Failed", "Please check your credentials");
         });
 
@@ -212,7 +213,7 @@ interface nama_title {
 
           let aa = response.data.data
 
-          // ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+          // Toast.show(''+ response.data.meta.message, Toast.SHORT);
           // navigation.navigate('Home');
 
           navigation.navigate('Succces Pilih',{
@@ -226,7 +227,7 @@ interface nama_title {
         else
         {
           setLoading(false)
-          ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+          Toast.show(''+ response.data.meta.message, Toast.SHORT);
         }
      
       })
@@ -234,7 +235,7 @@ interface nama_title {
         setLoading(false)
         // Handle error
         console.log(error);
-        ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+        Toast.show(''+ error, Toast.SHORT);
         // Alert.alert("Login Failed", "Please check your credentials");
       });
 

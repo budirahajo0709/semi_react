@@ -1,4 +1,4 @@
-import { Image, PermissionsAndroid, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Image, PermissionsAndroid, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { iccalender, iccamera, icchevrondown, icchevronup, icradioincheck, icradiouncheck } from '../../asset/images'
@@ -13,6 +13,7 @@ import { SwipeUp } from '../../component/atoms/SwipeUp'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 import CircleFad from '../../component/atoms/CircleFad'
 import {BASE_URL_STAG} from '@env';
+import Toast from 'react-native-simple-toast';
 
 
 const TambahAnak = ({navigation} : any) => {
@@ -199,27 +200,27 @@ const TambahAnak = ({navigation} : any) => {
         // console.log("alamat :  ", useAlamat)
 
         if(!fileData) {
-            ToastAndroid.show('Please fill picture !', ToastAndroid.SHORT);
+          Toast.show('Please fill picture !', Toast.SHORT);
             return;
         }
 
         if(!UseName) {
-            ToastAndroid.show('Please fill name !', ToastAndroid.SHORT);
+          Toast.show('Please fill name !', Toast.SHORT);
             return;
         }
 
         if(!useTtl) {
-            ToastAndroid.show('Please fill date of birth !', ToastAndroid.SHORT);
+          Toast.show('Please fill date of birth !', Toast.SHORT);
             return;
         }
 
         if(!dataIdEducation) {
-            ToastAndroid.show('Please fill education !', ToastAndroid.SHORT);
+          Toast.show('Please fill education !', Toast.SHORT);
             return;
         }
 
         if(!formal_class) {
-            ToastAndroid.show('Please fill class !', ToastAndroid.SHORT);
+          Toast.show('Please fill class !', Toast.SHORT);
             return;
         }
 
@@ -257,13 +258,13 @@ const TambahAnak = ({navigation} : any) => {
               if(response.data.meta.status_code == 200)
               {   
                 setLoading(false)
-                ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+                Toast.show(''+ response.data.meta.message, Toast.SHORT);
                 navigation.navigate('Home');
               }
               else
               {
                 setLoading(false)
-                ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+                Toast.show(''+ response.data.meta.message, Toast.SHORT);
               }
            
             })
@@ -271,7 +272,7 @@ const TambahAnak = ({navigation} : any) => {
               // Handle error
               setLoading(false)
               console.log(error);
-              ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+              Toast.show(''+ error, Toast.SHORT);
               // Alert.alert("Login Failed", "Please check your credentials");
             });
     

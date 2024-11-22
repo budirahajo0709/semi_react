@@ -1,4 +1,4 @@
-package com.test
+package com.icc.segakids
 
 import android.app.Application
 import com.facebook.react.PackageList

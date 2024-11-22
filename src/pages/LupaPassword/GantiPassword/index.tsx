@@ -1,4 +1,4 @@
-import { Alert, Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import CountDown from 'react-native-countdown-component';
@@ -10,6 +10,7 @@ import { BASE_URL } from '../../../config';
 import {BASE_URL_STAG} from '@env';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { ichiddeneye, icshoweye } from '../../../asset/images';
+import Toast from 'react-native-simple-toast';
 
 const GantiPassword = ({route , navigation } : any) => {
   const {phone_number} = route.params;
@@ -73,7 +74,7 @@ const GantiPassword = ({route , navigation } : any) => {
         else
         {
           setLoading(false)
-          ToastAndroid.show(''+ response.data.data.message, ToastAndroid.SHORT);
+          Toast.show(''+ response.data.data.message, Toast.SHORT);
         }
      
       })
@@ -81,7 +82,7 @@ const GantiPassword = ({route , navigation } : any) => {
         // Handle error
         console.log(error);
         setLoading(false)
-        ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+        Toast.show(''+ error, Toast.SHORT);
         // Alert.alert("Login Failed", "Please check your credentials");
       });
   }
@@ -92,12 +93,12 @@ const GantiPassword = ({route , navigation } : any) => {
     // console.log("password" + password)
 
     if (!useOTP) {
-      ToastAndroid.show('Please fill Code Otp !', ToastAndroid.SHORT);
+      Toast.show('Please fill Code Otp !', Toast.SHORT);
       return;
     }
     
     if (!password) {
-      ToastAndroid.show('Please fill Password !', ToastAndroid.SHORT);
+      Toast.show('Please fill Password !', Toast.SHORT);
       return;
     }
 
@@ -120,12 +121,12 @@ const GantiPassword = ({route , navigation } : any) => {
         {   
           setLoading(false)
           navigation.replace('Login');
-          ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+          Toast.show(''+ response.data.meta.message, Toast.SHORT);
         }
         else
         {
           setLoading(false)
-          ToastAndroid.show(''+ response.data.meta.message, ToastAndroid.SHORT);
+          Toast.show(''+ response.data.meta.message, Toast.SHORT);
         }
      
       })
@@ -133,7 +134,7 @@ const GantiPassword = ({route , navigation } : any) => {
         setLoading(false)
         // Handle error
         console.log(error);
-        ToastAndroid.show(''+ error, ToastAndroid.SHORT);
+        Toast.show(''+ error, Toast.SHORT);
         // Alert.alert("Login Failed", "Please check your credentials");
       });
 
